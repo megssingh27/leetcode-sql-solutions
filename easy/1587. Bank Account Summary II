@@ -1,0 +1,20 @@
+-- 1587. Bank Account Summary II
+
+select 
+  name, 
+  balance 
+from 
+  (
+    select 
+      a.name, 
+      a.account, 
+      sum(b.amount) as balance 
+    from 
+      users a 
+      left join transactions b on a.account = b.account 
+    group by 
+      1, 
+      2
+  ) as temp 
+where 
+  balance > 10000
